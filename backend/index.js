@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const generateBook = require("./generateBook");
 const seedrandom = require("seedrandom");
+require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 10000;
 const { fakerES } = require("@faker-js/faker");
@@ -55,5 +56,5 @@ app.get("/api/books", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at ${PORT}`);
 });
