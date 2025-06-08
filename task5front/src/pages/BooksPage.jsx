@@ -50,7 +50,7 @@ export default function BooksPage() {
   }, [seed, language, likes, review, loadBooks]);
 
   useEffect(() => {
-    const element = loadMoreRef.current; // сохраняем текущее значение ref
+    const element = loadMoreRef.current;
     if (!element) return;
     const observer = new IntersectionObserver(
       (entries) => {
@@ -71,7 +71,7 @@ export default function BooksPage() {
 
   return (
     <div className="container py-4 ">
-      <div className="sticky-top bg-white border-bottom py-3 ">
+      <div className="d-none d-md-block sticky-top bg-white border-bottom py-3 z-3">
         <Filters
           language={language}
           setLanguage={setLanguage}
@@ -109,7 +109,44 @@ export default function BooksPage() {
           </button>
         </div>
       </div>
-
+      <div className="d-block d-md-none bg-white border-bottom py-3">
+        <Filters
+          language={language}
+          setLanguage={setLanguage}
+          seed={seed}
+          setSeed={setSeed}
+          likes={likes}
+          setLikes={setLikes}
+          review={review}
+          setReview={setReview}
+        />
+        <div>
+          <CSVLink
+            data={books}
+            filename={"books-export.csv"}
+            className="btn btn-primary"
+            headers={[
+              { label: "ISBN", key: "isbn" },
+              { label: "Title", key: "title" },
+              { label: "Author", key: "author" },
+              { label: "Publisher", key: "publisher" },
+            ]}
+          >
+            Export to CSV
+          </CSVLink>
+          <button
+            type="button"
+            className="btn btn-outline-primary ms-2"
+            onClick={toggleViewMode}
+          >
+            {viewMode === "list" ? (
+              <i className="bi bi-grid-fill" style={{ fontSize: "1rem" }}></i>
+            ) : (
+              <i className="bi bi-list-ul" style={{ fontSize: "1rem" }}></i>
+            )}
+          </button>
+        </div>
+      </div>
       {viewMode === "list" ? (
         <BooksTable
           books={books}
