@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:4000/api/books";
+const API_URL = process.env.REACT_APP_API_URL;
 
 export const fetchBooks = async (
   seed,
@@ -10,7 +10,7 @@ export const fetchBooks = async (
   amount,
   offset
 ) => {
-  const response = await axios.get(API_URL, {
+  const response = await axios.get(`${API_URL}/books`, {
     params: { seed, language, likes, review, amount, offset },
   });
   return response.data;

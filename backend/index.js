@@ -12,7 +12,11 @@ const fakerMap = {
   ko: fakerKO,
   es: fakerES,
 };
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://buildtask5.vercel.app",
+  })
+);
 app.use(express.json());
 
 app.get("/api/books", (req, res) => {
