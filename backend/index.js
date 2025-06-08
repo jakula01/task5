@@ -15,7 +15,7 @@ const fakerMap = {
 };
 app.use(
   cors({
-    origin: "https://buildtask5.vercel.app",
+    origin: "https://task5-1-3plu.onrender.com",
   })
 );
 app.use(express.json());
